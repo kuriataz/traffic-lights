@@ -1,7 +1,7 @@
-Program for effective and optimized traffic light management. Carried out as part of mentoring.
+###Program for effective and optimized traffic light management. Carried out as part of mentoring.
 
 
-INPUT:
+###INPUT:
 
 For every direction (N, E, S, W) in separate line probabilty that the car will go from that
 direction  in a specific direction from the ones that are left (0.0 <= sum <= 1.0).
