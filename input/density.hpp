@@ -1,7 +1,9 @@
-#pragma once
+#ifndef DENSITY_HPP
+#define DENSITY_HPP
 
 #include <fstream>
 
+// a struct to store the traffic density of each direction
 struct Traffic_Density {
   double n_straight = 0;
   double n_left = 0;
@@ -26,5 +28,8 @@ struct Traffic_Density {
 
   void display();
 
+  // a function to parse the input file in a specific format
   void input_parser(std::ifstream &input);
 };
+
+#endif // DENSITY_HPP
