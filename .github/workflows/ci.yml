@@ -19,10 +19,16 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y build-essential cmake ninja-build
         sudo apt-get install -y libgtest-dev
-        cd /usr/src/googletest/googletest
-        sudo cmake -S . -B build
-        sudo cmake --build build
-        sudo cp build/lib/*.a /usr/lib
+
+        # Install Google Mock
+        git clone https://github.com/google/googletest.git
+        cd googletest
+        git checkout release-1.11.0  # Make sure to checkout the appropriate version
+        mkdir build
+        cd build
+        cmake ..
+        sudo cmake --build . --target install
+        cd ../..
 
     - name: Configure CMake
       run: cmake -S . -B build -G Ninja
