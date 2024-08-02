@@ -8,12 +8,15 @@
 #include "gmock/gmock.h"
 #include <density.hpp>
 #include <file_access.hpp>
+#include <filesystem>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 #include <light.hpp>
 #include <utility>
 
 TEST(FileAccessTest, ParseTest) {
+  std::cout << "Current working directory: " << std::filesystem::current_path()
+            << std::endl;
   file_access fa;
   std::map<int, double> cars;
   std::map<int, double> pedestrians;

@@ -1,4 +1,4 @@
-# @file lCMakeLists.txt
+# @file CMakeLists.txt
 # @license MIT
 # @date 24-07-2024
 # @author Zofia Kuriata
@@ -12,10 +12,6 @@ project(traffic-lights CXX)
 # Add Google Test
 enable_testing()
 find_package(GTest REQUIRED)
-# find_package(GMock REQUIRED)
-# set(CMAKE_FIND_DEBUG_MODE ON)
-# find_package(GTest CONFIG REQUIRED COMPONENTS GTest GMock)
-# set(CMAKE_FIND_DEBUG_MODE OFF)
 
 # Create a static library for common sources
 add_library(traffic_lights_lib STATIC
@@ -69,7 +65,3 @@ target_include_directories(tests
 # Register tests
 include(GoogleTest)
 gtest_discover_tests(tests)
-
-# Set working directory for tests
-add_test(NAME FileAccessTest COMMAND tests)
-set_tests_properties(FileAccessTest PROPERTIES WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/docs)
