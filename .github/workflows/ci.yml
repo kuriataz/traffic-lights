@@ -1,44 +1,29 @@
-name: CI
+name: Build and Test
 
 on:
   push:
-    branches:
-      - main
-      - 'feature/*'
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up C++ environment
-        uses: actions/setup-cpp@v1
-        with:
-          compiler: gcc
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake ninja-build
 
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y cmake ninja-build g++ libgtest-dev
-          cd /usr/src/googletest
-          sudo cmake .
-          sudo make
-          sudo cp ./lib/*.a /usr/lib
+    - name: Configure CMake
+      run: cmake -S . -B build -G Ninja
 
-      - name: Create build directory
-        run: mkdir build
+    - name: Build
+      run: cmake --build build
 
-      - name: Configure CMake project
-        run: cmake -B build -S . -G Ninja
-
-      - name: Build project
-        run: cmake --build build
-
-      - name: Run tests
-        run: cd build && ctest --output-on-failure
+    - name: Run tests
+      run: cd build && ctest --output-on-failure
