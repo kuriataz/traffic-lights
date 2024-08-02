@@ -69,3 +69,7 @@ target_include_directories(tests
 # Register tests
 include(GoogleTest)
 gtest_discover_tests(tests)
+
+# Set working directory for tests
+add_test(NAME FileAccessTest COMMAND tests)
+set_tests_properties(FileAccessTest PROPERTIES WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}/docs)
