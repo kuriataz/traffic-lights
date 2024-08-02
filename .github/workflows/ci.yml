@@ -12,17 +12,17 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v2
 
     - name: Install dependencies
       run: |
         sudo apt-get update
         sudo apt-get install -y build-essential cmake ninja-build
         sudo apt-get install -y libgtest-dev
-        cd /usr/src/gtest
-        sudo cmake CMakeLists.txt
-        sudo make
-        sudo cp *.a /usr/lib
+        cd /usr/src/googletest/googletest
+        sudo cmake -S . -B build
+        sudo cmake --build build
+        sudo cp build/lib/*.a /usr/lib
 
     - name: Configure CMake
       run: cmake -S . -B build -G Ninja
