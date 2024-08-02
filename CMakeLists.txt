@@ -62,6 +62,9 @@ target_include_directories(tests
     src/
 )
 
+# Add definition to pass CMAKE_SOURCE_DIR to tests
+target_compile_definitions(tests PRIVATE CMAKE_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
+
 # Register tests
 include(GoogleTest)
 gtest_discover_tests(tests)

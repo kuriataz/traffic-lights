@@ -15,12 +15,11 @@
 #include <utility>
 
 TEST(FileAccessTest, ParseTest) {
-  std::cout << "Current working directory: " << std::filesystem::current_path()
-            << std::endl;
   file_access fa;
   std::map<int, double> cars;
   std::map<int, double> pedestrians;
-  fa.parse(cars, pedestrians, "docs/input.txt");
+  fa.parse(cars, pedestrians,
+           std::string(CMAKE_SOURCE_DIR) + "/docs/input.txt");
 
   ASSERT_DOUBLE_EQ(cars[0], 0.12);
   ASSERT_DOUBLE_EQ(cars[8], 0.15);
@@ -31,7 +30,7 @@ TEST(DensityTest, ParseTest) {
   file_access fa;
   density d(&fa);
 
-  d.parse("docs/input.txt");
+  d.parse(std::string(CMAKE_SOURCE_DIR) + "/docs/input.txt");
 
   ASSERT_DOUBLE_EQ(d.cars[0], 0.12);
   ASSERT_DOUBLE_EQ(d.cars[8], 0.15);
