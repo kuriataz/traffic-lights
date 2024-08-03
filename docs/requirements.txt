@@ -1,0 +1,31 @@
+PROJECT REQUIREMENTS
+
+    General Requirements
+
+        Project Name: Traffic Lights
+        Author: Zofia Kuriata
+        License: MIT
+
+    Software Requirements
+
+        C++ Compiler
+            Minimum Standard: C++17
+            Recommended Compiler: GCC (GNU Compiler Collection)
+                Minimum Version: 11
+
+        Operating System
+            The project is developed and tested on Linux. It is recommended to use a modern distribution such as Ubuntu, Fedora, or any other that supports GCC 11 or higher.
+
+        Integrated Development Environment (IDE)
+            Visual Studio Code (VS Code)
+
+    Build System Requirements
+
+        CMake
+            Minimum Version: 3.15
+
+        Build Tool
+            Ninja
+
+        Google Test (GTest) and Google Mock (GMock)
+            Minimum Version: 1.11.0

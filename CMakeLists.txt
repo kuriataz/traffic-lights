@@ -30,14 +30,14 @@ target_include_directories(traffic_lights_lib
 )
 
 # Main executable
-add_executable(input
-    src/test_input.cpp
+add_executable(main
+    src/main.cpp
 )
-target_link_libraries(input
+target_link_libraries(main
     PRIVATE
     traffic_lights_lib
 )
-target_include_directories(input
+target_include_directories(main
     PRIVATE
     src/
 )

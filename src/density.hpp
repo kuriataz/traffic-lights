@@ -16,7 +16,7 @@
 struct density {
 
   // a map to store the id of each light
-  std::map<std::string, int> ids;
+  std::map<int, std::string> ids;
   // maps to store density at each light by id
   std::map<int, double> cars;
   std::map<int, double> pedestrians;
@@ -34,7 +34,7 @@ struct density {
   void display();
 
   void parse(std::string file) {
-    in->parse(this->cars, this->pedestrians, file);
+    in->parse_input(this->cars, this->pedestrians, file);
   }
 
 private:

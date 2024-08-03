@@ -14,7 +14,8 @@ struct in_interface {
   in_interface() = default;
   virtual ~in_interface() = default;
 
-  virtual void parse(std::map<int, double> &cars,
-                     std::map<int, double> &pedestrains, std::string) = 0;
+  virtual void parse_input(std::map<int, double> &cars,
+                           std::map<int, double> &pedestrains,
+                           std::string info) = 0;
 };
 #endif // IN_HPP

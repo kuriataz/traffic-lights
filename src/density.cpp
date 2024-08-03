@@ -41,23 +41,24 @@ std::ostream &operator<<(std::ostream &os, const density &d) {
 void density::display() { std::cout << *this; }
 
 void density::set_ids() {
-  ids.insert({"n_straight", 0});
-  ids.insert({"n_left", 1});
-  ids.insert({"n_right", 2});
-  ids.insert({"e_straight", 3});
-  ids.insert({"e_left", 4});
-  ids.insert({"e_right", 5});
-  ids.insert({"s_straight", 6});
-  ids.insert({"s_left", 7});
-  ids.insert({"s_right", 8});
-  ids.insert({"w_straight", 9});
-  ids.insert({"w_left", 10});
-  ids.insert({"w_right", 11});
-  ids.insert({"n_crossing", 12});
-  ids.insert({"e_crossing", 13});
-  ids.insert({"s_crossing", 14});
-  ids.insert({"w_crossing", 15});
+  ids.insert({0, "n_straight"});
+  ids.insert({1, "n_left"});
+  ids.insert({2, "n_right"});
+  ids.insert({3, "e_straight"});
+  ids.insert({4, "e_left"});
+  ids.insert({5, "e_right"});
+  ids.insert({6, "s_straight"});
+  ids.insert({7, "s_left"});
+  ids.insert({8, "s_right"});
+  ids.insert({9, "w_straight"});
+  ids.insert({10, "w_left"});
+  ids.insert({11, "w_right"});
+  ids.insert({12, "n_crossing"});
+  ids.insert({13, "e_crossing"});
+  ids.insert({14, "s_crossing"});
+  ids.insert({15, "w_crossing"});
 }
+
 void density::set_cars() {
   for (int i = 0; i != 12; ++i) {
     cars.insert(std::make_pair(i, 0));

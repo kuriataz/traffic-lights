@@ -1,0 +1,10 @@
+Cycle 0: id: 0, queue: 1 id: 1, queue: 1 id: 2, queue: 1 id: 5, queue: 1 
+Cycle 1: id: 3, queue: 2 id: 6, queue: 2 id: 7, queue: 2 id: 9, queue: 0 id: 10, queue: 0 
+Cycle 2: id: 4, queue: 2 id: 5, queue: 2 id: 10, queue: 1 id: 11, queue: 3 
+Cycle 3: id: 0, queue: 3 id: 5, queue: 1 id: 9, queue: 2 id: 15, queue: 4 
+Cycle 4: id: 0, queue: 1 id: 2, queue: 3 id: 3, queue: 2 id: 8, queue: 4 id: 11, queue: 1 
+Cycle 5: id: 6, queue: 2 id: 10, queue: 3 id: 13, queue: 4 id: 14, queue: 3 
+Cycle 6: id: 1, queue: 4 id: 3, queue: 2 id: 12, queue: 2 id: 15, queue: 3 
+Cycle 7: id: 1, queue: 1 id: 5, queue: 4 id: 7, queue: 2 id: 8, queue: 2 id: 9, queue: 4 
+Cycle 8: id: 2, queue: 3 id: 6, queue: 3 id: 9, queue: 1 id: 14, queue: 3 id: 15, queue: 2 
+Cycle 9: id: 3, queue: 3 id: 4, queue: 2 id: 10, queue: 2 id: 11, queue: 2 id: 12, queue: 3 

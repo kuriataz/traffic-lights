@@ -11,10 +11,12 @@
 #include <map>
 #include <sstream>
 #include <string>
+#include <vector>
 
-void file_access::parse(std::map<int, double> &cars,
-                        std::map<int, double> &pedestrians, std::string info) {
-  std::ifstream input(info);
+void file_access::parse_input(std::map<int, double> &cars,
+                              std::map<int, double> &pedestrians,
+                              std::string file) {
+  std::ifstream input(file);
   if (!input.is_open()) {
     std::cerr << "Error: could not open input file" << std::endl;
     exit(1);
@@ -22,7 +24,6 @@ void file_access::parse(std::map<int, double> &cars,
 
   std::string line;
   std::string direction;
-  std::string way;
   std::istringstream iss(line);
   int i = 0;
   int j = 0;
@@ -43,4 +44,22 @@ void file_access::parse(std::map<int, double> &cars,
   for (; i != 16; ++i) {
     iss >> pedestrians[i];
   }
+}
+
+void file_access::parse_output(std::vector<std::map<int, int>> &cycles,
+                               std::string file) {
+  std::ofstream output(file);
+  if (!output.is_open()) {
+    std::cerr << "Error: could not open output file" << std::endl;
+    exit(1);
+  }
+
+  for (size_t i = 0; i < cycles.size(); ++i) {
+    output << "Cycle " << i << ": ";
+    for (const auto &entry : cycles[i]) {
+      output << "id: " << entry.first << ", queue: " << entry.second << " ";
+    }
+    output << std::endl;
+  }
+  output.close();
 }

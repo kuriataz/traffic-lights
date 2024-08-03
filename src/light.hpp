@@ -8,8 +8,17 @@
 #ifndef LIGHT_HPP
 #define LIGHT_HPP
 
+#include "out.hpp"
 #include <density.hpp>
+#include <map>
+#include <random>
 #include <vector>
+
+#define GREEN_LOAD 10 // how many cars can pass on green light in one cycle
+
+static std::random_device rd;
+static std::mt19937 mt(rd());
+static std::uniform_real_distribution<double> dis(0.0, 1.0);
 
 struct light {
   int id = 0;
@@ -29,15 +38,15 @@ struct light {
 };
 
 struct crossing {
-  density d;
+  density *d;
   std::vector<light> lights;
 
-  crossing(density d) : d(d) {
+  crossing(density *d) : d(d) {
 
-    for (auto &car : d.cars) {
+    for (auto &car : d->cars) {
       lights.push_back(light(car.first));
     }
-    for (auto &pedestrian : d.pedestrians) {
+    for (auto &pedestrian : d->pedestrians) {
       lights.push_back(light(pedestrian.first));
     }
     set_cross();
@@ -48,14 +57,31 @@ private:
 
 public:
   bool is_safe(int id);
+
+  void accept_traffic();
+  void reduce_traffic();
+
+  std::map<int, int> change_lights();
+  void set_red();
+  std::vector<int> get_greens();
+
+  void cycle();
+
+  void display();
 };
 
 struct controler {
-  crossing c;
 
-  controler(crossing c) : c(c) {}
+  crossing *c;
+  // stores ids of lights that are green and their queue for every cycle
+  std::vector<std::map<int, int>> cycles;
+  out_interface *out;
 
-  void change_lights();
+  controler(crossing *c, out_interface *out) : c(c), out(out) {}
+
+  void go(int rounds);
+
+  void parse(std::string file) { out->parse_output(this->cycles, file); }
 };
 
 #endif // LIGHT_HPP
