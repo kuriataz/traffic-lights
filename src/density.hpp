@@ -33,7 +33,7 @@ struct density {
 
   void display();
 
-  void parse(std::string file) {
+  void parse(const std::string &file) {
     in->parse_input(this->cars, this->pedestrians, file);
   }
 

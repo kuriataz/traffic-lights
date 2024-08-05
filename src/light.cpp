@@ -164,7 +164,18 @@ void controler::go(int rounds) {
     cycles[i] = c->change_lights();
     c->display();
     c->reduce_traffic();
-    c->display();
+    // c->display();
     c->set_red();
   }
+}
+
+std::map<int, int> controler::get_light_info(int light_id) {
+  std::map<int, int> info;
+  for (int i = 0; i != cycles.size(); ++i) {
+    auto queues = cycles[i].find(19);
+    std::cout << "i: " << i << " first: " << queues->first
+              << " second: " << queues->second << "\n";
+    info[i] = queues->second;
+  }
+  return info;
 }

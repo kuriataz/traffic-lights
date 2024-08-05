@@ -22,6 +22,8 @@ add_library(traffic_lights_lib STATIC
     src/in.hpp
     src/light.hpp
     src/light.cpp
+    src/ui.hpp
+    src/ui.cpp
 )
 
 target_include_directories(traffic_lights_lib

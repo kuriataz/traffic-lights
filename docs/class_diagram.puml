@@ -1,0 +1,81 @@
+@startuml traffic_lights
+
+class controler {
+  + crossing* c
+  + vector<map<int, int>> cycles
+  + out_interface* out
+  --
+  + controler(crossing* c, out_interface* out)
+  + go(int rounds): void
+  + parse(string file): void
+  + get_light_info(int light_id): map<int, int>
+}
+
+class crossing {
+  + vector<light> lights
+  + density* d
+  --
+  + crossing(density* d)
+  + set_cross(): void
+  + is_safe(int id): bool
+  + accept_traffic(): void
+  + reduce_traffic(): void
+  + change_lights(): map<int, int>
+  + set_red(): void
+  + get_greens(): vector<int>
+  + cycle(): void
+  + display(): void
+}
+
+class light {
+  + int id
+  + STATE state
+  + int queue
+  + vector<int> cross
+  --
+  + get_state(): STATE
+  + change_state(): void
+  + set_cross_cars(): void
+  + set_cross_pedestrians(): void
+}
+
+class density{
+  + map<int, std::string> ids
+  + map<int, double> cars
+  + map<int, double> pedestrians
+  + in_interface *in
+  --
+  + density(in_interface *input)
+  + display(): void
+  + parse(string file): void
+  - set_cars(): void
+  - set_pedestrians(): void
+  - set_ids(): void
+
+}
+
+class file_access{
+  --
+  + parse_output(vector<map<int, int>> &cycles, string file): void
+  + parse_input(map<int, double> &cars,
+                           map<int, double> &pedestrains, string file): void
+}
+
+interface out_interface {
+  + parse_output(vector<map<int, int>> &cycles, string file): void
+}
+
+interface in_interface {
+  + parse_input(map<int, double> &cars,
+                           map<int, double> &pedestrains, string file): void
+}
+
+controler --> crossing
+controler ..|> out_interface
+crossing --> light
+density ..|> in_interface
+crossing --> density
+file_access <|-- in_interface
+file_access <|-- out_interface
+
+@enduml

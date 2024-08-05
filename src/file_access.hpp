@@ -20,6 +20,9 @@ struct file_access : public in_interface, out_interface {
 
   virtual void parse_output(std::vector<std::map<int, int>> &cycles,
                             std::string file) override;
+
+  virtual void parse_output_id(std::map<int, int> &cycles,
+                               std::string file) override;
 };
 
 #endif // FILE_ACCESS_HPP

@@ -1,0 +1,11 @@
+@startuml uc_traffic_lights
+
+actor User
+
+usecase "Get Light State Info" as UC1
+usecase "Get Cycle Output" as UC2
+
+User --> UC1
+User --> UC2
+
+@enduml

@@ -21,7 +21,6 @@ void file_access::parse_input(std::map<int, double> &cars,
     std::cerr << "Error: could not open input file" << std::endl;
     exit(1);
   }
-
   std::string line;
   std::string direction;
   std::istringstream iss(line);
@@ -61,5 +60,20 @@ void file_access::parse_output(std::vector<std::map<int, int>> &cycles,
     }
     output << std::endl;
   }
+  output.close();
+}
+void file_access::parse_output_id(std::map<int, int> &cycles,
+                                  std::string file) {
+  std::ofstream output(file);
+  if (!output.is_open()) {
+    std::cerr << "Error: could not open output file" << std::endl;
+    exit(1);
+  }
+
+  for (const auto &entry : cycles) {
+    output << "cycle: " << entry.first << ", queue: " << entry.second << " ";
+  }
+  output << std::endl;
+
   output.close();
 }

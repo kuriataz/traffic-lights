@@ -23,7 +23,6 @@ static std::uniform_real_distribution<double> dis(0.0, 1.0);
 struct light {
   int id = 0;
   int queue = 0;
-  double time = 0;
   enum STATE { RED, GREEN } state;
   std::vector<int> cross; // ids of lights that can't be green at the same time
 
@@ -82,6 +81,11 @@ struct controler {
   void go(int rounds);
 
   void parse(std::string file) { out->parse_output(this->cycles, file); }
+  void parse_id(std::map<int, int> cycles, std::string file) {
+    out->parse_output_id(cycles, file);
+  }
+
+  std::map<int, int> get_light_info(int light_id);
 };
 
 #endif // LIGHT_HPP
