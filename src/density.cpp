@@ -5,32 +5,34 @@
  * @author Zofia Kuriata
  */
 
+#include "constants.hpp"
 #include <density.hpp>
+#include <file_access.hpp>
 #include <iostream>
 
 std::ostream &operator<<(std::ostream &os, const density &d) {
   int i = 0;
-  int j = 3;
+  int j = ways;
   os << "North: ";
-  for (; i != 3; ++i) {
+  for (; i != ways; ++i) {
     os << d.cars.at(i) << " ";
   }
-  j += 3;
+  j += ways;
   os << "\nEast: ";
   for (; i != j; ++i) {
     os << d.cars.at(i) << " ";
   }
-  j += 3;
+  j += ways;
   os << "\nSouth: ";
   for (; i != j; ++i) {
     os << d.cars.at(i) << " ";
   }
-  j += 3;
+  j += ways;
   os << "\nWest: ";
   for (; i != j; ++i) {
     os << d.cars.at(i) << " ";
   }
-  j += 4;
+  j += p_lights;
   os << "\nCrossing: ";
   for (; i != j; ++i) {
     os << d.pedestrians.at(i) << " ";
@@ -60,13 +62,15 @@ void density::set_ids() {
 }
 
 void density::set_cars() {
-  for (int i = 0; i != 12; ++i) {
+  for (int i = 0; i != c_lights; ++i) {
     cars.insert(std::make_pair(i, 0));
   }
 }
 
 void density::set_pedestrians() {
-  for (int i = 12; i != 16; ++i) {
-    pedestrians.insert(std::make_pair(i, 0));
+  for (int i = 0; i != p_lights; ++i) {
+    pedestrians.insert(std::make_pair(i + c_lights, 0));
   }
 }
+
+std::string density::get_name(int id) { return ids.at(id); }

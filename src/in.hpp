@@ -7,6 +7,7 @@
 
 #ifndef IN_HPP
 #define IN_HPP
+
 #include <map>
 #include <string>
 
@@ -16,6 +17,7 @@ struct in_interface {
 
   virtual void parse_input(std::map<int, double> &cars,
                            std::map<int, double> &pedestrains,
-                           std::string info) = 0;
+                           std::string url) = 0;
 };
+
 #endif // IN_HPP

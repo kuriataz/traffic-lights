@@ -8,7 +8,7 @@
 #ifndef OUT_HPP
 #define OUT_HPP
 
-#include <map>
+#include <set.hpp>
 #include <string>
 #include <vector>
 
@@ -16,10 +16,7 @@ struct out_interface {
   out_interface() = default;
   virtual ~out_interface() = default;
 
-  virtual void parse_output(std::vector<std::map<int, int>> &cycles,
-                            std::string info) = 0;
-
-  virtual void parse_output_id(std::map<int, int> &cycles,
-                               std::string file) = 0;
+  virtual void save(std::vector<set> sets, std::string url) = 0;
 };
+
 #endif // OUT_HPP

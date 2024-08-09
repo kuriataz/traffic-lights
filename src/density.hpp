@@ -8,39 +8,37 @@
 #ifndef DENSITY_HPP
 #define DENSITY_HPP
 
+#include <constants.hpp>
+#include <file_access.hpp>
 #include <in.hpp>
 #include <map>
 #include <string>
 
-// a struct to store the traffic density of each direction
+// a struct to store the traffic density at each light
 struct density {
-
-  // a map to store the id of each light
-  std::map<int, std::string> ids;
+private:
+public:
   // maps to store density at each light by id
   std::map<int, double> cars;
   std::map<int, double> pedestrians;
+  // a map to store the id of each light
+  std::map<int, std::string> ids;
 
-  in_interface *in;
-
-  density(in_interface *input) : in(input) {
+  density() {
     set_ids();
     set_cars();
     set_pedestrians();
   }
 
-  friend std::ostream &operator<<(std::ostream &os, const density &d);
-
   void display();
-
-  void parse(const std::string &file) {
-    in->parse_input(this->cars, this->pedestrians, file);
-  }
 
 private:
   void set_ids();
   void set_cars();
   void set_pedestrians();
+
+public:
+  std::string get_name(int id);
 };
 
 std::ostream &operator<<(std::ostream &os, const density &d);
