@@ -5,7 +5,7 @@
  * @author Zofia Kuriata
  */
 
-#include "constants.hpp"
+#include <constants.hpp>
 #include <density.hpp>
 #include <file_access.hpp>
 #include <iostream>

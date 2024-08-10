@@ -17,6 +17,7 @@ struct out_interface {
   virtual ~out_interface() = default;
 
   virtual void save(std::vector<set> sets, std::string url) = 0;
+  virtual void save_detail(std::vector<set> sets, std::string url) = 0;
 };
 
 #endif // OUT_HPP

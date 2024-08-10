@@ -11,13 +11,14 @@
 #include <light.hpp>
 #include <vector>
 
+// a struct to store info about lights that can be green at the same time
 struct set {
   int id;
-  std::vector<int> lights_ids;
-  double sum = 0;
-  double priority = 0;
-  int time = 0;
-  int order = 0;
+  std::vector<int> lights_ids; // ids of the lights in set
+  double sum = 0;              // sum of each light's load
+  double priority = 0; // what part of all probabilities is the set's sum
+  int time = 0;        // how long will the set's lights be green
+  int order = 0;       // when will the set's lights turn green
 
   set(int id, std::vector<int> lights_ids) : id(id), lights_ids(lights_ids) {}
 

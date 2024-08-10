@@ -6,7 +6,7 @@
 #include <map>
 #include <set.hpp>
 #include <sstream>
-#include <stdexcept> // For std::runtime_error
+#include <stdexcept>
 #include <string>
 #include <vector>
 
@@ -50,6 +50,27 @@ void file_access::parse_input(std::map<int, double> &cars,
 }
 
 void file_access::save(std::vector<set> sets, std::string url) {
+  std::ofstream output(url);
+  if (!output.is_open()) {
+    throw std::runtime_error("Error: could not open output file: " + url);
+  }
+
+  int counter = 0;
+  for (size_t i = 0; i < sets.size(); ++i) {
+    output << "Green for entry " << counter << ". : ";
+    counter += sets[i].time;
+    for (size_t j = 0; j < sets[i].lights_ids.size(); ++j) {
+      output << sets[i].lights_ids[j] << " ";
+    }
+    output << std::endl;
+  }
+  if (output.fail()) {
+    throw std::runtime_error("Error: failed to write to output file: " + url);
+  }
+  output.close();
+}
+
+void file_access::save_detail(std::vector<set> sets, std::string url) {
   std::ofstream output(url);
   if (!output.is_open()) {
     throw std::runtime_error("Error: could not open output file: " + url);

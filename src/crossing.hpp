@@ -14,26 +14,25 @@
 #include <vector>
 
 struct crossing {
-  // private:
+private: // comment out for tests
   density d;
   std::vector<light> lights;
 
   friend class controler;
 
 public:
-  double all_load;
-  std::vector<set> sets;
+  double all_load;       // sum of all lights' probabilities
+  std::vector<set> sets; // stes of lights that can be green at the same time
 
   crossing() : d() { make_sets(); }
 
-  // private:
-  void make_sets();
-  void count_sums();
-  void update_sets();
-  void set_lights();
-
-public:
-  void display();
+private: // comment out for tests
+  void
+  make_sets(); // creates 10 sets of lights that can be green at the same time
+  void set_lights();  // gets probabilities from density
+  void count_sums();  // adds sums of probabilities for each set of lights
+  void update_sets(); // updates priority, time and order for each set of
+                      // lights, sorts sets by their sums
 };
 
 #endif // CROSSING.HPP

@@ -12,7 +12,7 @@
 
 struct light {
   int id = 0;
-  double load = 0;
+  double load = 0; // probability that the car will show up
   light(const int id, double load) : id(id), load(load) {}
 };
 

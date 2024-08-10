@@ -20,11 +20,11 @@ private:
 public:
   controler() : c() {}
 
-  void parse(std::string url);
+  void parse(std::string url); // get probabilities from input
 
   void go();
 
-  void save(std::string url);
+  void save(std::string url); // store the output
 };
 
 #endif // CONTROLER.HPP

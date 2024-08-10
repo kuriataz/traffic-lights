@@ -21,8 +21,7 @@ public:
   // maps to store density at each light by id
   std::map<int, double> cars;
   std::map<int, double> pedestrians;
-  // a map to store the id of each light
-  std::map<int, std::string> ids;
+  std::map<int, std::string> ids; // a map to store the id of each light
 
   density() {
     set_ids();
@@ -33,12 +32,15 @@ public:
   void display();
 
 private:
-  void set_ids();
-  void set_cars();
-  void set_pedestrians();
+  void set_ids();  // gives id for every light in specific and unchangable order
+  void set_cars(); // prepares a map to store probabilities with ids as keys for
+                   // cars' lights
+  void set_pedestrians(); // prepares a map to store probabilities with ids as
+                          // keys for pedestrians' lights
 
 public:
-  std::string get_name(int id);
+  std::string get_name(
+      int id); // gives the direction and the way of the light with given id
 };
 
 std::ostream &operator<<(std::ostream &os, const density &d);
