@@ -2,10 +2,8 @@
 
 actor User
 
-usecase "Get Light State Info" as UC1
-usecase "Get Cycle Output" as UC2
+usecase "Get Cycle Output" as UC1
 
 User --> UC1
-User --> UC2
 
 @enduml

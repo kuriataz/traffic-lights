@@ -16,12 +16,12 @@
 
 // a struct to store the traffic density at each light
 struct density {
-private:
+private:                          // comment out for tests
+  std::map<int, std::string> ids; // a map to store the id of each light
 public:
   // maps to store density at each light by id
   std::map<int, double> cars;
   std::map<int, double> pedestrians;
-  std::map<int, std::string> ids; // a map to store the id of each light
 
   density() {
     set_ids();

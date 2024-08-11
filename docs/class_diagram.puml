@@ -1,81 +1,102 @@
 @startuml traffic_lights
 
 class controler {
-  + crossing* c
-  + vector<map<int, int>> cycles
-  + out_interface* out
+  - crossing c
+  + std::vector<map<int, int>> cycles
+  - in_interface* in
+  - out_interface* out
   --
-  + controler(crossing* c, out_interface* out)
-  + go(int rounds): void
-  + parse(string file): void
-  + get_light_info(int light_id): map<int, int>
+  + controler()
+  + parse(std::string url): void
+  + go(): void
+  + save(std::string url): void
 }
 
 class crossing {
-  + vector<light> lights
-  + density* d
+  - density d
+  - std::vector<light> lights
+  + double all_load
+  + std::vector<set> sets
   --
-  + crossing(density* d)
-  + set_cross(): void
-  + is_safe(int id): bool
-  + accept_traffic(): void
-  + reduce_traffic(): void
-  + change_lights(): map<int, int>
-  + set_red(): void
-  + get_greens(): vector<int>
-  + cycle(): void
-  + display(): void
+  + crossing()
+  + make_sets(): void
+  + set_lights(): void
+  + count_sums(): void
+  + update_sets(): void
 }
 
 class light {
   + int id
-  + STATE state
-  + int queue
-  + vector<int> cross
+  + double load
   --
-  + get_state(): STATE
-  + change_state(): void
-  + set_cross_cars(): void
-  + set_cross_pedestrians(): void
+  + light(const int id, double load)
 }
 
-class density{
-  + map<int, std::string> ids
+class density {
+  - map<int, std::string> ids
   + map<int, double> cars
   + map<int, double> pedestrians
-  + in_interface *in
   --
-  + density(in_interface *input)
+  + density()
   + display(): void
-  + parse(string file): void
+  + get_name(int id): std::string
   - set_cars(): void
   - set_pedestrians(): void
   - set_ids(): void
 
 }
 
-class file_access{
+class file_access {
   --
-  + parse_output(vector<map<int, int>> &cycles, string file): void
-  + parse_input(map<int, double> &cars,
-                           map<int, double> &pedestrains, string file): void
+  + parse_input(std::map<int, double> &cars,
+                           std::map<int, double> &pedestrains, std::string url): void
+  + save(std::vector<set> sets, std::string url): void
+  + save_detail(std::vector<set> sets, std::string url): void
+}
+
+class set {
+  + int id
+  + std::vector<int> lights_ids
+  + double sum
+  + double priority
+  + int time
+  + int order
+  --
+  + set(int id, std::vector<int> lights_ids)
+  + set_priority(double priority): void
+  + set_time(int cycle_time): void
+  + set_order(int order): void
 }
 
 interface out_interface {
-  + parse_output(vector<map<int, int>> &cycles, string file): void
+  + save(std::vector<set> sets, std::string url): void
+  + save_detail(std::vector<set> sets, std::string url): void
 }
 
 interface in_interface {
   + parse_input(map<int, double> &cars,
-                           map<int, double> &pedestrains, string file): void
+                           std::map<int, double> &pedestrains, std::string url): void
 }
 
-controler --> crossing
-controler ..|> out_interface
-crossing --> light
-density ..|> in_interface
-crossing --> density
+interface ui {
+  + hello(): void
+  + input_url(): std::string
+  + output_url(): std::string
+}
+
+class main {
+
+}
+
 file_access <|-- in_interface
 file_access <|-- out_interface
+controler --> crossing
+controler ..|> out_interface
+controler ..|> in_interface
+crossing --> light
+crossing --> density
+crossing --> set
+main ..|> ui
+main --> controler
 
 @enduml
