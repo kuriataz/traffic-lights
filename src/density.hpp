@@ -12,7 +12,6 @@
 #include <file_access.hpp>
 #include <in.hpp>
 #include <map>
-#include <string>
 
 class DensityTest_CreateTest_Test;
 class DensityTest_DisplayTest_Test;
@@ -22,15 +21,11 @@ struct density {
   friend class DensityTest_CreateTest_Test;
   friend class DensityTest_DisplayTest_Test;
 
-private:                          // comment out for tests
-  std::map<int, std::string> ids; // a map to store the id of each light
-public:
   // maps to store density at each light by id
   std::map<int, double> cars;
   std::map<int, double> pedestrians;
 
   density() {
-    set_ids();
     set_cars();
     set_pedestrians();
   }
@@ -38,17 +33,12 @@ public:
   void display();
 
 private:
-  void set_ids();  // gives id for every light in specific and unchangable order
   void set_cars(); // prepares a map to store probabilities with ids as keys for
                    // cars' lights
   void set_pedestrians(); // prepares a map to store probabilities with ids as
                           // keys for pedestrians' lights
 
-public:
-  std::string get_name(
-      int id); // gives the direction and the way of the light with given id
+  friend std::ostream &operator<<(std::ostream &os, const density &d);
 };
-
-std::ostream &operator<<(std::ostream &os, const density &d);
 
 #endif // DENSITY_HPP

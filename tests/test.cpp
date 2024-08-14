@@ -29,23 +29,6 @@ TEST(FileAccessTest, ParseTest) {
 
 TEST(DensityTest, CreateTest) {
   density d;
-  ASSERT_THAT(d.ids, testing::UnorderedElementsAre(
-                         std::pair<int, const std::string>(0, "n_straight"),
-                         std::pair<int, const std::string>(1, "n_left"),
-                         std::pair<int, const std::string>(2, "n_right"),
-                         std::pair<int, const std::string>(3, "e_straight"),
-                         std::pair<int, const std::string>(4, "e_left"),
-                         std::pair<int, const std::string>(5, "e_right"),
-                         std::pair<int, const std::string>(6, "s_straight"),
-                         std::pair<int, const std::string>(7, "s_left"),
-                         std::pair<int, const std::string>(8, "s_right"),
-                         std::pair<int, const std::string>(9, "w_straight"),
-                         std::pair<int, const std::string>(10, "w_left"),
-                         std::pair<int, const std::string>(11, "w_right"),
-                         std::pair<int, const std::string>(12, "n_crossing"),
-                         std::pair<int, const std::string>(13, "e_crossing"),
-                         std::pair<int, const std::string>(14, "s_crossing"),
-                         std::pair<int, const std::string>(15, "w_crossing")));
 
   ASSERT_THAT(d.cars,
               testing::UnorderedElementsAre(

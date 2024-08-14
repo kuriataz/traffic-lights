@@ -6,23 +6,22 @@
  */
 
 #include <algorithm>
+#include <constants.hpp>
 #include <crossing.hpp>
 #include <vector>
 
 void crossing::make_sets() {
-
-  // is it possible to do it without magic numbers?
   // {id, {ids of lights that can be green together}}
-  sets.push_back({0, {15, 1, 0, 5, 8}});
-  sets.push_back({1, {15, 4, 0, 5, 8}});
-  sets.push_back({2, {12, 4, 3, 8, 11}});
-  sets.push_back({3, {12, 7, 3, 8, 11}});
-  sets.push_back({4, {14, 1, 9, 2, 5}});
-  sets.push_back({5, {14, 10, 9, 2, 5}});
-  sets.push_back({6, {13, 10, 6, 2, 11}});
-  sets.push_back({7, {13, 7, 6, 2, 11}});
-  sets.push_back({8, {13, 15, 0, 6}});
-  sets.push_back({9, {12, 14, 3, 9}});
+  sets.push_back({set0, {w_crossing, n_left, n_straight, e_right, s_right}});
+  sets.push_back({set1, {w_crossing, e_left, n_straight, e_right, s_right}});
+  sets.push_back({set2, {n_crossing, e_left, e_straight, s_right, w_right}});
+  sets.push_back({set3, {n_crossing, s_left, e_straight, s_right, w_right}});
+  sets.push_back({set4, {s_crossing, n_left, w_straight, n_right, e_right}});
+  sets.push_back({set5, {s_crossing, w_left, w_straight, n_right, e_right}});
+  sets.push_back({set6, {e_crossing, w_left, s_straight, n_right, w_right}});
+  sets.push_back({set7, {e_crossing, s_left, s_straight, n_right, w_right}});
+  sets.push_back({set8, {e_crossing, w_crossing, n_straight, s_straight}});
+  sets.push_back({set9, {n_crossing, s_crossing, e_straight, w_straight}});
 }
 
 void crossing::set_lights() {
