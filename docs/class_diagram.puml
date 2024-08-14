@@ -68,6 +68,26 @@ class set {
   + set_order(int order): void
 }
 
+class option_definition {
+  + std::string short_name
+  + std::string long_name
+  + int id
+  + bool mandatory_argument
+}
+
+class option {
+  + int id
+  + std::string argument
+  --
+  + option(int id)
+  + option(int id, std::string argument)
+}
+
+class parse_result {
+  + std::vector<option> options
+  + std::vector<std::string> arguments
+}
+
 interface out_interface {
   + save(std::vector<set> sets, std::string url): void
   + save_detail(std::vector<set> sets, std::string url): void
@@ -78,14 +98,15 @@ interface in_interface {
                            std::map<int, double> &pedestrains, std::string url): void
 }
 
-interface ui {
-  + hello(): void
-  + input_url(): std::string
-  + output_url(): std::string
-}
-
 class main {
-
+  + option_definition[] option_defs
+  + int size
+  + parse_result result
+  + std::string input
+  + std::string output
+  + bool is_input = false
+  + bool is_output = false
+  + controler ctrl
 }
 
 file_access <|-- in_interface
@@ -96,7 +117,9 @@ controler ..|> in_interface
 crossing --> light
 crossing --> density
 crossing --> set
-main ..|> ui
 main --> controler
+main --> option
+main --> option_definition
+main --> parse_result
 
 @enduml

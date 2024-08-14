@@ -1,70 +1,83 @@
-// /**
-//  * @file main.cpp
-//  * @license MIT
-//  * @date 03-08-2024
-//  * @author Zofia Kuriata
-//  */
+/**
+ * @file main.cpp
+ * @license MIT
+ * @date 03-08-2024
+ * @author Zofia Kuriata
+ */
 
+#include <algorithm>
 #include <controler.hpp>
 #include <density.hpp>
+#include <exception>
 #include <file_access.hpp>
 #include <iostream>
 #include <light.hpp>
-#include <ui.hpp>
+#include <options.hpp>
 
-int main() {
-  user_interface ui;
-  ui.hello();
-  std::string input = "docs/input.txt";
-  std::string output = "docs/output.txt";
-  // std::string input = ui.input_url();
-  // std::string output = ui.output_url();
+int main(int argc, char **argv) {
+  constexpr int OPTION_INPUT = 0;
+  constexpr int OPTION_OUTPUT = 1;
+  constexpr int OPTION_DETAIL = 2;
+
+  option_definition option_defs[] = {
+      option_definition{"-i", "--input", OPTION_INPUT, true},
+      option_definition{"-o", "--output", OPTION_OUTPUT, true},
+      option_definition{"-d", "--detail", OPTION_DETAIL, false}};
+
+  int size = sizeof(option_defs) / sizeof(option_definition);
+
+  parse_result result = parse_arguments(argc, argv, option_defs, size);
+
+  std::string input;
+  std::string output;
+
+  bool is_input = false;
+  bool is_output = false;
+
+  if (!(result.options.empty())) {
+    for (option const &option : result.options) {
+      switch (option.id) {
+      case OPTION_INPUT:
+        input = option.argument;
+        is_input = true;
+        break;
+      case OPTION_OUTPUT:
+        output = option.argument;
+        is_output = true;
+        break;
+      }
+    }
+  }
+
+  if (!is_input) {
+    std::cerr << "Error: input option is required but not provided."
+              << std::endl;
+    return 1;
+  }
+
+  if (!is_output) {
+    std::cerr << "Error: output option is required but not provided."
+              << std::endl;
+    return 1;
+  }
+
   controler ctrl;
   try {
     ctrl.parse(input);
     ctrl.go();
-    ctrl.save(output);
+
+    if (std::find_if(result.options.begin(), result.options.end(),
+                     [](const option &opt) {
+                       return opt.id == OPTION_DETAIL;
+                     }) != result.options.end()) {
+      ctrl.save_detail(output);
+    } else {
+      ctrl.save(output);
+    }
   } catch (const std::exception &e) {
     std::cerr << e.what() << std::endl;
     return 1;
   }
+
   return 0;
 }
-// #include <controler.hpp>
-// #include <density.hpp>
-// #include <file_access.hpp>
-// #include <iostream>
-// #include <light.hpp>
-// #include <ui.hpp>
-
-// int main() {
-//   user_interface ui;
-//   ui.hello();
-//   std::string input, output;
-//   controler ctrl;
-
-//   while (true) {
-//     try {
-//       input = ui.input_url();
-//       ctrl.parse(input);
-//       break; // Exit loop if parsing is successful
-//     } catch (const std::exception &e) {
-//       std::cerr << "Error: " << e.what() << std::endl;
-//       std::cerr << "Please enter a valid input file." << std::endl;
-//     }
-//   }
-
-//   while (true) {
-//     try {
-//       output = ui.output_url();
-//       ctrl.go();
-//       ctrl.save(output);
-//       break; // Exit loop if saving is successful
-//     } catch (const std::exception &e) {
-//       std::cerr << "Error: " << e.what() << std::endl;
-//       std::cerr << "Please enter a valid output file." << std::endl;
-//     }
-//   }
-
-//   return 0;
-// }

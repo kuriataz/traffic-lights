@@ -14,7 +14,7 @@
 #include <set.hpp>
 #include <string>
 
-struct file_access : public in_interface, out_interface {
+struct file_access : public in_interface, public out_interface {
   virtual void parse_input(std::map<int, double> &cars,
                            std::map<int, double> &pedestrains,
                            std::string url) override;

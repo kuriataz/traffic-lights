@@ -25,10 +25,10 @@ add_library(traffic_lights_lib STATIC
     src/crossing.cpp
     src/controler.hpp
     src/controler.cpp
-    src/ui.hpp
-    src/ui.cpp
     src/set.hpp
     src/constants.hpp
+    src/options.hpp
+    src/options.cpp
 )
 
 target_include_directories(traffic_lights_lib

@@ -25,6 +25,8 @@ public:
   void go();
 
   void save(std::string url); // store the output
+
+  void save_detail(std::string url); // store the output for every entry
 };
 
 #endif // CONTROLER.HPP

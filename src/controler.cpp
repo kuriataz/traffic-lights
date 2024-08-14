@@ -30,3 +30,12 @@ void controler::save(std::string url) {
   }
   out->save(c.sets, url);
 }
+
+void controler::save_detail(std::string url) {
+  if (url.find(".txt") != std::string::npos) {
+    out = new file_access;
+  } else {
+    throw std::runtime_error("Error: output file must be a .txt file");
+  }
+  out->save_detail(c.sets, url);
+}

@@ -14,8 +14,14 @@
 #include <map>
 #include <string>
 
+class DensityTest_CreateTest_Test;
+class DensityTest_DisplayTest_Test;
+
 // a struct to store the traffic density at each light
 struct density {
+  friend class DensityTest_CreateTest_Test;
+  friend class DensityTest_DisplayTest_Test;
+
 private:                          // comment out for tests
   std::map<int, std::string> ids; // a map to store the id of each light
 public:

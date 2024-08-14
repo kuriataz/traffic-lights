@@ -20,7 +20,7 @@ TEST(FileAccessTest, ParseTest) {
   std::map<int, double> cars;
   std::map<int, double> pedestrians;
   fa.parse_input(cars, pedestrians,
-                 std::string(CMAKE_SOURCE_DIR) + "/docs/input.txt");
+                 std::string(CMAKE_SOURCE_DIR) + "/tests/test_input.txt");
 
   ASSERT_DOUBLE_EQ(cars[0], 0.0);
   ASSERT_DOUBLE_EQ(cars[8], 0.15);
@@ -100,9 +100,15 @@ TEST(DensityTest, DisplayTest) {
 
 TEST(SetTest, SetPriorityTest) {
   set s({0, {15, 1, 0, 5, 8}});
-  s.sum = 100;
   s.set_priority(0.5);
   ASSERT_EQ(s.priority, 0.5);
+}
+
+TEST(SetTest, SetTimeTest) {
+  set s({0, {15, 1, 0, 5, 8}});
+  s.set_priority(0.5);
+  s.set_time(90);
+  ASSERT_EQ(s.time, 45);
 }
 
 TEST(CrossingTest, SetLightsTest) {

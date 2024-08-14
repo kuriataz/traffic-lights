@@ -13,8 +13,15 @@
 #include <set.hpp>
 #include <vector>
 
+class CrossingTest_SetLightsTest_Test;
+class CrossingTest_CountSumsTest_Test;
+
 struct crossing {
-private: // comment out for tests
+
+  friend class CrossingTest_SetLightsTest_Test;
+  friend class CrossingTest_CountSumsTest_Test;
+
+private:
   density d;
   std::vector<light> lights;
 

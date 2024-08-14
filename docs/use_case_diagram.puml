@@ -3,7 +3,9 @@
 actor User
 
 usecase "Get Cycle Output" as UC1
+usecase "Get Cycle Output With Deatils" as UC1
 
 User --> UC1
+User --> UC2
 
 @enduml
