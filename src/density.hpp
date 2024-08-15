@@ -13,15 +13,11 @@
 #include <in.hpp>
 #include <map>
 
-class DensityTest_CreateTest_Test;
-class DensityTest_DisplayTest_Test;
 class DensityTest_SetCarsTest_Test;
 class DensityTest_SetPedestriansTest_Test;
 
 // a struct to store the traffic density at each light
 struct density {
-  friend class DensityTest_CreateTest_Test;
-  friend class DensityTest_DisplayTest_Test;
 
   friend class DensityTest_SetCarsTest_Test;
   friend class DensityTest_SetPedestriansTest_Test;

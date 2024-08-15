@@ -49,27 +49,6 @@ target_include_directories(main
     src/
 )
 
-# # Test executable
-# add_executable(tests
-#     tests/test.cpp
-# )
-
-#  target_link_libraries(tests
-#     PRIVATE
-#     GTest::gtest_main
-#     GTest::gtest
-#     GTest::gmock
-#     GTest::gmock_main
-#     pthread
-#     traffic_lights_lib
-# )
-
-# target_include_directories(tests
-#     PRIVATE
-#     src/
-# )
-# target_compile_definitions(tests PRIVATE CMAKE_SOURCE_DIR="${CMAKE_SOURCE_DIR}")
-
 # file_access tests
 add_executable(file_access_tests
     tests/file_access_test.cpp
