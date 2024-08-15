@@ -15,6 +15,7 @@ constexpr int c_lights = directions * ways; // lights for cars (12)
 constexpr int CYCLE_TIME = 90;              // how many seconds lasts the cycle
 
 // ids of each light
+// it goes: straight, left, right for each direction (order: n, e, s, w)
 
 constexpr int n_straight = 0;
 constexpr int n_left = 1;

@@ -9,9 +9,9 @@
 #define FILE_ACCESS_HPP
 
 #include <in.hpp>
+#include <light_set.hpp>
 #include <map>
 #include <out.hpp>
-#include <set.hpp>
 #include <string>
 
 struct file_access : public in_interface, public out_interface {
@@ -19,9 +19,9 @@ struct file_access : public in_interface, public out_interface {
                            std::map<int, double> &pedestrains,
                            std::string url) override;
 
-  virtual void save(std::vector<set> sets, std::string url)
+  virtual void save(std::vector<light_set> sets, std::string url)
       override; // shows only the entries when the lights are changed
-  virtual void save_detail(std::vector<set> sets,
+  virtual void save_detail(std::vector<light_set> sets,
                            std::string url) override; // shows every entry
 };
 

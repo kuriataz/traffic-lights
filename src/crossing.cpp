@@ -11,7 +11,7 @@
 #include <vector>
 
 void crossing::make_sets() {
-  // {id, {ids of lights that can be green together}}
+  // {set_id, {ids of lights that can be green together}}
   sets.push_back({set0, {w_crossing, n_left, n_straight, e_right, s_right}});
   sets.push_back({set1, {w_crossing, e_left, n_straight, e_right, s_right}});
   sets.push_back({set2, {n_crossing, e_left, e_straight, s_right, w_right}});

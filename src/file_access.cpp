@@ -4,7 +4,6 @@
 #include <fstream>
 #include <iostream>
 #include <map>
-#include <set.hpp>
 #include <sstream>
 #include <stdexcept>
 #include <string>
@@ -49,7 +48,7 @@ void file_access::parse_input(std::map<int, double> &cars,
   }
 }
 
-void file_access::save(std::vector<set> sets, std::string url) {
+void file_access::save(std::vector<light_set> sets, std::string url) {
   std::ofstream output(url);
   if (!output.is_open()) {
     throw std::runtime_error("Error: could not open output file: " + url);
@@ -70,7 +69,7 @@ void file_access::save(std::vector<set> sets, std::string url) {
   output.close();
 }
 
-void file_access::save_detail(std::vector<set> sets, std::string url) {
+void file_access::save_detail(std::vector<light_set> sets, std::string url) {
   std::ofstream output(url);
   if (!output.is_open()) {
     throw std::runtime_error("Error: could not open output file: " + url);
