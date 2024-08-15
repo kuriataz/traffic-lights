@@ -12,9 +12,17 @@
 void file_access::parse_input(std::map<int, double> &cars,
                               std::map<int, double> &pedestrians,
                               std::string url) {
+
   std::ifstream input(url);
   if (!input.is_open()) {
     throw std::runtime_error("Error: could not open input file: " + url);
+  }
+
+  for (int i = 0; i != c_lights; ++i) {
+    cars[i] = -1;
+  }
+  for (int i = 0; i != p_lights; ++i) {
+    pedestrians[i + c_lights] = -1;
   }
 
   std::string line;
@@ -33,6 +41,9 @@ void file_access::parse_input(std::map<int, double> &cars,
     iss.str(line);
     for (; i != j; ++i) {
       iss >> cars[i];
+      if (cars[i] > 1 || cars[i] < 0) {
+        throw std::runtime_error("Error: wrong data in input file: " + url);
+      }
     }
   }
 
@@ -45,6 +56,9 @@ void file_access::parse_input(std::map<int, double> &cars,
   iss.str(line);
   for (; i != c_lights + p_lights; ++i) {
     iss >> pedestrians[i];
+    if (pedestrians[i] > 1 || pedestrians[i] < 0) {
+      throw std::runtime_error("Error: wrong data in input file: " + url);
+    }
   }
 }
 

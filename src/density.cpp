@@ -44,12 +44,12 @@ void density::display() { std::cout << *this; }
 
 void density::set_cars() {
   for (int i = 0; i != c_lights; ++i) {
-    cars.insert(std::make_pair(i, 0));
+    cars.insert(std::make_pair(i, -1));
   }
 }
 
 void density::set_pedestrians() {
   for (int i = 0; i != p_lights; ++i) {
-    pedestrians.insert(std::make_pair(i + c_lights, 0));
+    pedestrians.insert(std::make_pair(i + c_lights, -1));
   }
 }

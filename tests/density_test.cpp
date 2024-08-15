@@ -17,11 +17,11 @@ TEST(DensityTest, ConstructorTest) {
   EXPECT_EQ(d.pedestrians.size(), p_lights);
 
   for (const auto &pair : d.cars) {
-    EXPECT_EQ(pair.second, 0);
+    EXPECT_EQ(pair.second, -1);
   }
 
   for (const auto &pair : d.pedestrians) {
-    EXPECT_EQ(pair.second, 0);
+    EXPECT_EQ(pair.second, -1);
   }
 }
 
@@ -58,7 +58,7 @@ TEST(DensityTest, SetCarsTest) {
 
   EXPECT_EQ(d.cars.size(), c_lights);
   for (int i = 0; i < c_lights; ++i) {
-    EXPECT_EQ(d.cars[i], 0);
+    EXPECT_EQ(d.cars[i], -1);
   }
 }
 
@@ -70,6 +70,6 @@ TEST(DensityTest, SetPedestriansTest) {
 
   EXPECT_EQ(d.pedestrians.size(), p_lights);
   for (int i = 0; i < p_lights; ++i) {
-    EXPECT_EQ(d.pedestrians[i + c_lights], 0);
+    EXPECT_EQ(d.pedestrians[i + c_lights], -1);
   }
 }

@@ -76,6 +76,30 @@ TEST(FileAccessTest, ParseInput_FileNotFound) {
                std::runtime_error);
 }
 
+// Test for parse_input method when file has wrong format - data is missing
+TEST(FileAccessTest, ParseInput_WrongInputFormat) {
+  file_access fa;
+  std::map<int, double> cars;
+  std::map<int, double> pedestrians;
+
+  std::string wrong = "wrong_input.txt";
+  std::ofstream file(wrong);
+
+  if (file.is_open()) {
+    file << "0.1 0.11 0.12\n";
+    file << "0.2 0.21 0.22\n";
+    file << "0.3 0.31 \n";
+    file << "0.4 0.41 0.42\n";
+    file << "\n";
+    file << "0.5 0.51 0.52\n";
+    file.close();
+  }
+
+  EXPECT_THROW(fa.parse_input(cars, pedestrians, wrong), std::runtime_error);
+
+  remove_file(wrong);
+}
+
 // Test for save method
 TEST(FileAccessTest, Save_Success) {
   std::string filename = create_mock_output_file();
