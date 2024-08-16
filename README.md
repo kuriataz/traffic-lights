@@ -1,5 +1,13 @@
 ### Program for effective and optimized traffic light management. Carried out as part of mentoring.
 
+### START
+
+1) git clone https://github.com/kuriataz/traffic-lights.git
+2) cd traffic-lights
+3) cmake -GNinja -Bbuild
+4) ninja -Cbuild
+5) ./build/main (--input <input_file.txt> | -i <input_file.txt>) (--output <output_file.txt> | -o <output_file.txt>) [--detail | -d]
+
 
 
 ### INPUT:
