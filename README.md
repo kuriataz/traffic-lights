@@ -10,6 +10,8 @@
 
 
 
+![alt text](https://github.com/kuriataz/traffic-lights/blob/main/docs/class_diagram.png)
+
 ### INPUT:
 
 For every direction (N, E, S, W) in separate line probabilty that the car will go from that
