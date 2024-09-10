@@ -8,7 +8,13 @@
 4) ninja -Cbuild
 5) ./build/main (--input <input_file.txt> | -i <input_file.txt>) (--output <output_file.txt> | -o <output_file.txt>) [--detail | -d]
 
+    EXAMPLE RUN: ./build/main --input example/input.txt --output ex.txt -d
 
+    The output should be the same as in examples/output_detail.txt
+
+
+
+### CLASS DIAGRAM
 
 ![alt text](https://github.com/kuriataz/traffic-lights/blob/main/docs/class_diagram.png)
 
@@ -27,13 +33,3 @@ For every crossing (N, E, S, W) probabilty that a pedestrian will want to cross 
 [from W going E] [from W going N] [from W going S]
 
 [N crossing] [E crossing] [S crossing] [W crossing]
-
-
-Example input file:
-
-0.12 0.1 0.15
-0.20 0.17 0.16
-0.02 0.31 0.12
-0.02 0.11 0.13
-
-0.5 0.3 0.2 0.8
