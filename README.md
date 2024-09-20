@@ -1,8 +1,8 @@
 ### Program for effective and optimized traffic light management. Carried out as part of mentoring.
 
-    Sums up the probability that a car will appear at a given traffic light in the next time interval for each set of lights (consists of lights that can be green simultaneously without collision).
-    Based on this, it sets priority and allocates time for each set.
-    Output shows which lights should be green at each time interval.
+Sums up the probability that a car will appear at a given traffic light in the next time interval for each set of lights (consists of lights that can be green simultaneously without collision).
+Based on this, it sets priority and allocates time for each set.
+Output shows which lights should be green at each time interval.
 
 
 
